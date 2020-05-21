@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/new', (req, res) => {
+  res.render('new')
+})
+
 app.listen(3000, () => {
   console.log(`App is listening on http://localhost:3000`)
 })

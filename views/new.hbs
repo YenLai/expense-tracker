@@ -1,0 +1,48 @@
+<div class="container">
+  <form action="POST">
+
+    <div class="row justify-content-center text-center">
+      <h2 class="col-12 my-4">請輸入你的支出</h2>
+
+      <div class="row mr-5">
+        <div class="input-group col-12 mb-5">
+          <span style="font-size: x-large;">名稱* : </span>
+          <input type="text" class="form-control ml-3" placeholder="  支出名稱"
+            style="width: 1em; height:3em; border-color:black">
+        </div>
+        <div class="input-group col-12 mb-5">
+          <span style="font-size: x-large;">日期* : </span>
+          <input type="date" class="form-control ml-3" placeholder="  支出日期"
+            style="width: 1em; height:3em; border-color:black">
+          {{!-- <div class="input-group-append ">
+            <span class="input-group-text" style="border-color:black">
+              <i class="far fa-calendar-alt"></i>
+            </span>
+          </div> --}}
+        </div>
+        <div class="input-group col-12 mb-5">
+          <span style="font-size: x-large;">類別* : </span>
+          <select class="custom-select ml-3" style="width: 1em; height:3em; border-color:black">
+            <option selected>Select</option>
+            <option value="1">家居物業</option>
+            <option value="2">交通出行</option>
+            <option value="3">休閒娛樂</option>
+            <option value="4">餐飲食品</option>
+            <option value="5">其他</option>
+          </select>
+        </div>
+        <div class="input-group col-12 mb-3">
+          <span style="font-size: x-large;">金額* : </span>
+          <input type="text" class="form-control ml-3" placeholder="  支出金額"
+            style="width: 1em; height:3em; border-color:black">
+        </div>
+      </div>
+      <small class="col-12 mb-3" style="color: #E4885B;">*為必填欄位</small>
+
+      <div class="col-12">
+        <button class="btn btn-outline-dark btn-lg">新增支出</button>
+      </div>
+    </div>
+
+  </form>
+</div>
