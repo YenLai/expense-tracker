@@ -14,14 +14,18 @@ db.once('open', () => {
   for (let i = 0; i < 8; i++) {
     Record.create({
       name: `第${i}筆花費`,
-      date: '2020/05/20',
+      date: getDate(),
       amount: Math.ceil(Math.random() * 1000),
       category: categorySeeder()
     })
   }
   console.log('Done !')
-
 })
+
+function getDate() {
+  const date = new Date
+  return date.toLocaleDateString().split('-').join('/')
+}
 
 
 

@@ -1,12 +1,58 @@
-<div>
-  <ul>
-    {{#each list}}
-    <li>
-      {{this.name}}
-      {{{this.category.icon}}} {{this.category.name}}
-      {{this.date}}
-      {{this.amount}}
-    </li>
-    {{/each}}
-  </ul>
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="dropdown col-8 ">
+      <button class="btn dropdown-toggle my-3 w-50" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" style="border: 1px black solid;">
+        類別
+      </button>
+      <div class="dropdown-menu w-50" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">家居物業</a>
+        <a class="dropdown-item" href="#">交通出行</a>
+        <a class="dropdown-item" href="#">休閒娛樂</a>
+        <a class="dropdown-item" href="#">餐飲食品</a>
+        <a class="dropdown-item" href="#">其他</a>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <h3 class="col-8">
+      總金額:
+      <div class="text-center" style="font-size: 3.5em; color:#E4885B">{{totalAmount}}</div class="text-enter">
+    </h3>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <ul class="list-group-flush">
+        {{#each list}}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-8" style="background-color: #F7F7F7;">
+              <div class="row align-items-center">
+                <h2 class="col-1 mx-2">{{{this.category.icon}}}</h2>
+                <h4 class="col my-1 mx-auto">{{this.name}}
+                  <div class="mt-2" style="font-size: medium;">
+                    {{this.date}}
+                  </div>
+                </h4>
+                <h4 class="col-2">{{this.amount}}</h4>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row mt-2">
+                <a class="col-4 ml-auto btn btn-outline-secondary"> 修改 </a>
+                <a class="col-4 ml-1 btn btn-outline-secondary"> 刪除 </a>
+              </div>
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+  <div class="row justify-content-center my-3">
+    <button class="col-2 btn-dark"
+      style="background-color: #E4885B; border: 1px black solid; font-size:x-large">新增支出</button>
+  </div>
+
 </div>
