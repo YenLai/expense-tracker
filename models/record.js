@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Category = require('./category')
 const Schema = mongoose.Schema
 
 const recordSchema = new Schema({
@@ -6,13 +7,15 @@ const recordSchema = new Schema({
     type: String,
     required: true
   },
-  category: {
-    type: String,
-    required: require
+  category:
+  {
+    type: Object,
+    require: true
   },
   date: {
-    type: String,
-    require: require
+    type: Date,
+    require: true,
+    default: Date.now
   },
   amount: {
     type: Number,
