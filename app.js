@@ -10,7 +10,7 @@ const app = express()
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
-app.use(express.static('public'))
+// app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   Record.find()
@@ -26,6 +26,14 @@ app.get('/', (req, res) => {
 
 app.get('/new', (req, res) => {
   res.render('new')
+})
+
+app.get('/edit/:id', (req, res) => {
+  const id = req.params.id
+  Record.findById(id)
+    .lean()
+    .then(record => { res.render('edit', { record }) })
+  // .catch(error => console.log(error))
 })
 
 app.listen(3000, () => {

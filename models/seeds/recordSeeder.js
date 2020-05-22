@@ -11,10 +11,10 @@ db.once('open', () => {
   console.log('mongodb connected!')
   console.log('creating record data ... ')
 
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 5; i++) {
     Record.create({
       name: `第${i}筆花費`,
-      date: getDate(),
+      date: '2020-05-22',
       amount: Math.ceil(Math.random() * 1000),
       category: categorySeeder()
     })
@@ -22,10 +22,6 @@ db.once('open', () => {
   console.log('Done !')
 })
 
-function getDate() {
-  const date = new Date
-  return date.toLocaleDateString().split('-').join('/')
-}
 
 
 
