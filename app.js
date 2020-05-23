@@ -27,7 +27,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/new', (req, res) => {
-  res.render('new')
+  const date = new Date
+  const today = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).substr(-2)}-${('0' + date.getDate()).substr(-2)}`
+  res.render('new', { today })
 })
 
 app.get('/edit/:id', (req, res) => {

@@ -3,7 +3,11 @@
     <div class="dropdown col-8 ">
       <button class="btn dropdown-toggle my-3 w-50" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false" style="border: 1px black solid;">
+        {{#if cate}}
+        <span>{{cate}}</span>
+        {{else}}
         類別
+        {{/if}}
       </button>
 
       <div class="dropdown-menu w-50" aria-labelledby="dropdownMenuButton">

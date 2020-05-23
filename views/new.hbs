@@ -11,7 +11,7 @@
         </div>
         <div class="input-group col-12 mb-5">
           <span style="font-size: x-large;">日期* : </span>
-          <input name="date" type="date" class="form-control ml-3" placeholder="  支出日期"
+          <input name="date" type="date" class="form-control ml-3" placeholder="  支出日期" value="{{today}}"
             style="width: 1em; height:3em; border-color:black" required>
         </div>
         <div class="input-group col-12 mb-5">
@@ -29,7 +29,7 @@
         <div class="input-group col-12 mb-3">
           <span style="font-size: x-large;">金額* : </span>
           <input name="amount" type="text" class="form-control ml-3" placeholder="  支出金額"
-            style="width: 1em; height:3em; border-color:black" required>
+            onkeyup="value=value.replace(/[^\d]/g,'')" style="width: 1em; height:3em; border-color:black" required>
         </div>
       </div>
       <small class="col-12 mb-3" style="color: #E4885B;">*為必填欄位</small>

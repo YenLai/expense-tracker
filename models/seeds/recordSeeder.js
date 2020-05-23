@@ -24,8 +24,6 @@ const categoryList = [
   }
 ]
 
-
-
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
