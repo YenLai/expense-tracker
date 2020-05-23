@@ -8,12 +8,11 @@ const app = express()
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('./public'))
 
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.get('/', (req, res) => {
-
-
   Record.find()
     .sort({ _id: 'asc' })
     .lean()
@@ -102,7 +101,7 @@ function getCategory(_id) {
       icon: '<i class="fas fa-home"></i>'
     },
     {
-      name: '交通出行 ',
+      name: '交通出行',
       icon: '<i class="fas fa-shuttle-van"></i>'
     },
     {
@@ -114,11 +113,11 @@ function getCategory(_id) {
       icon: '<i class="fas fa-utensils"></i>'
     },
     {
-      name: '其他 ',
+      name: '其他',
       icon: '<i class="fas fa-pen"></i>'
     }
   ]
-
-  return categoryList[_id]
+  // if input category name , find the index of category name and output an Object of it.
+  return categoryList[_id] || categoryList[categoryList.findIndex(category => category.name === _id)]
 
 }
