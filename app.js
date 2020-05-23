@@ -2,19 +2,21 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const Record = require('./models/record')
 const app = express()
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('method'))
 app.use(express.static('./public'))
 
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.get('/', (req, res) => {
   Record.find()
-    .sort({ _id: 'asc' })
+    .sort('-date')
     .lean()
     .then(records => {
       let totalAmount = 0
@@ -66,7 +68,7 @@ app.post('/new', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/delete/:id', (req, res) => {
+app.delete('/delete/:id', (req, res) => {
   const id = req.params.id
   Record.findById(id)
     .then(record => record.remove())
@@ -74,7 +76,7 @@ app.post('/delete/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/edit/:id', (req, res) => {
+app.put('/edit/:id', (req, res) => {
   const id = req.params.id
   const body = req.body
   Record.findById(id)
