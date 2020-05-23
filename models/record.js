@@ -1,25 +1,29 @@
 const mongoose = require('mongoose')
-const Category = require('./category')
 const Schema = mongoose.Schema
 
-const recordSchema = new Schema({
+const categorySchema = new Schema({
   name: {
     type: String,
     required: true
   },
-  category:
-  {
-    type: Object,
-    require: true
-  },
-  date: {
+  icon: {
     type: String,
-    require: true
-  },
-  amount: {
-    type: Number,
-    require: true
+    required: true
   }
 })
+
+const recordSchema = new Schema({
+  name: {
+    type: String
+  },
+  date: {
+    type: String
+  },
+  amount: {
+    type: Number
+  },
+  category: categorySchema
+})
+
 
 module.exports = mongoose.model('Record', recordSchema)

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Record = require('./record')
 const Schema = mongoose.Schema
 
 const categorySchema = new Schema({
