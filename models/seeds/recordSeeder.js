@@ -7,7 +7,7 @@ const categoryList = [
     icon: '<i class="fas fa-home"></i>'
   },
   {
-    name: '交通出行 ',
+    name: '交通出行',
     icon: '<i class="fas fa-shuttle-van"></i>'
   },
   {
@@ -19,7 +19,7 @@ const categoryList = [
     icon: '<i class="fas fa-utensils"></i>'
   },
   {
-    name: '其他 ',
+    name: '其他',
     icon: '<i class="fas fa-pen"></i>'
   }
 ]
