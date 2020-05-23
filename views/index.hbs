@@ -7,16 +7,20 @@
       </button>
 
       <div class="dropdown-menu w-50" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">家居物業</a>
-        <a class="dropdown-item" href="#">交通出行</a>
-        <a class="dropdown-item" href="#">休閒娛樂</a>
-        <a class="dropdown-item" href="#">餐飲食品</a>
-        <a class="dropdown-item" href="#">其他</a>
+        <a class="dropdown-item" href="/">ALL</a>
+        <a class="dropdown-item" href="/category/0">家居物業</a>
+        <a class="dropdown-item" href="/category/1">交通出行</a>
+        <a class="dropdown-item" href="/category/2">休閒娛樂</a>
+        <a class="dropdown-item" href="/category/3">餐飲食品</a>
+        <a class="dropdown-item" href="/category/4">其他</a>
       </div>
     </div>
   </div>
   <div class="row justify-content-center">
     <h3 class="col-8">
+      {{#if cate}}
+      <span>{{cate}}</span>
+      {{/if}}
       總金額:
       <div class="text-center" style="font-size: 3.5em; color:#E4885B">{{totalAmount}}</div class="text-enter">
     </h3>

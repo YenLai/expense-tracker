@@ -39,6 +39,20 @@ app.get('/edit/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/category/:id', (req, res) => {
+  const cate = getCategory(req.params.id).name
+  Record.find({ 'category.name': cate })
+    .lean()
+    .then((records => {
+      let totalAmount = 0
+      records.forEach(record => {
+        totalAmount += record.amount
+      })
+      res.render('index', { records, totalAmount, cate })
+    }))
+    .catch(error => console.log(error))
+})
+
 app.post('/new', (req, res) => {
   const body = req.body
   Record.create({
