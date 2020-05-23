@@ -59,11 +59,25 @@ app.post('/delete/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.listen(3000, () => {
-  console.log(`App is listening on http://localhost:3000`)
+app.post('/edit/:id', (req, res) => {
+  const id = req.params.id
+  const body = req.body
+  Record.findById(id)
+    .then((record) => {
+      record.name = body.name
+      record.date = body.date
+      record.amount = body.amount
+      record.category = getCategory(body.category)
+      record.save()
+    })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 
+app.listen(3000, () => {
+  console.log(`App is listening on http://localhost:3000`)
+})
 
 
 function getCategory(_id) {
