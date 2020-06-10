@@ -10,7 +10,8 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/users/login'
+  failureRedirect: '/users/login',
+  failureFlash: true
 }))
 
 router.get('/register', (req, res) => {
@@ -19,20 +20,32 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
+  const errors = []
+
+  if (!name | !email | !password | !confirmPassword)
+    errors.push({ message: '每個欄位都是必填。' })
+  if (confirmPassword !== password)
+    errors.push({ message: '密碼與確認密碼不相符。' })
+
   User.findOne({ email })
     .then(user => {
       if (user)
-        return 'email exist.'
+        errors.push({ message: '該 Email 已經被註冊過。' })
+      if (errors.length)
+        return res.render('register', { errors, name, email, password, confirmPassword })
       return User.create({
         name, email, password
-      })
+      }).then(() => {
+        req.flash('success_msg', '帳號註冊成功')
+        res.redirect('/users/login')
+      }).catch(err => console.log(err))
     })
-    .then(() => res.redirect('/users/login'))
-    .catch(err => console.log(err))
+
 })
 
 router.get('/logout', (req, res) => {
   req.logout()
+  req.flash('success_msg', '你已經成功登出。')
   res.redirect('/users/login')
 })
 

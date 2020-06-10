@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const usePassport = require('./config/passport')
 const routes = require('./routes')
+const flash = require('connect-flash')
 const PORT = process.env.PORT || 3000
 
 require('./config/mongoose')
@@ -17,10 +18,14 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.use(flash())
 usePassport(app)
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
+  res.locals.loginError = req.flash('error')[0]
   next()
 })
 app.use(routes)
