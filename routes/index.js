@@ -5,10 +5,10 @@ const records = require('./modules/records')
 const category = require('./modules/category')
 const users = require('./modules/users')
 
-router.use('/', home)
+router.use('/users', users)
 router.use('/records', records)
 router.use('/category', category)
-router.use('/users', users)
+router.use('/', home)
 
 
 module.exports = router
