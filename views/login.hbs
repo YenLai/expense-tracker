@@ -1,10 +1,10 @@
 <div class="container">
-  <form action="/user/login" method="post">
+  <form action="/users/login" method="post">
     <div class="row mt-5">
       <div class="col-md-6 m-auto">
         <div class="card card-body">
           <h2 class="text-center">Login</h2>
-          {{> message}}
+          {{!-- {{> message}} --}}
           <div>
             <label for="email">Email</label>
             <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
@@ -17,7 +17,7 @@
           <button type="submit" class="btn btn-outline-dark btn-block">Login</button>
           <a href="/auth/facebook" class="btn btn-primary btn-block">Facebook</a>
           <p class="mt-2">
-            No account ? <a href="/user/register">Sign in</a>
+            No account ? <a href="/users/register">Sign in</a>
           </p>
         </div>
       </div>
