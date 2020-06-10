@@ -22,6 +22,11 @@ const recordSchema = new Schema({
   amount: {
     type: Number
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    require: true
+  },
   category: categorySchema
 })
 
