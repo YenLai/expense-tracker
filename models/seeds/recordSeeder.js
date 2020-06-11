@@ -1,19 +1,55 @@
 const Record = require('../record')
+const User = require('../user')
 const getCategory = require('../getCategory')
+const bcrypt = require('bcryptjs')
 
-require('../../config/mongoose')
+if (process.env.NODE_ENV !== 'production')
+  require('dotenv').config()
+db = require('../../config/mongoose')
+
+const SEED_USER = [
+  {
+    email: 'user1@example.com',
+    password: '12345678'
+  },
+  {
+    email: 'user2@example.com',
+    password: '12345678'
+  }
+]
 
 db.once('open', () => {
-
-  for (let i = 0; i < 5; i++) {
-    Record.create({
-      name: `第${i + 1}筆花費`,
-      date: '2020-05-22',
-      amount: Math.ceil(Math.random() * 1000),
-      category: getCategory([Math.floor(Math.random() * 5)])
-    })
-  }
-  console.log('Seed data created !')
+  return Promise.all(Array.from(
+    { length: SEED_USER.length },
+    (_, index) => {
+      const { email, password } = SEED_USER[index]
+      bcrypt.genSalt(10)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash =>
+          User.create({
+            email, password: hash
+          }))
+        .then(user => {
+          const date = new Date
+          const userId = user._id
+          return Promise.all(Array.from(
+            { length: 3 },
+            (_, i) => Record.create({
+              name: `cost-${i}`,
+              date: `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).substr(-2)}-${('0' + date.getDate()).substr(-2)}`,
+              amount: Math.floor(Math.random() * 1000),
+              category: { name: getCategory(i).name, icon: getCategory(i).icon },
+              userId
+            })
+          ))
+        }).then(() => {
+          console.log('done')
+          // process.exit()
+        })
+    }
+  ))
 })
+
+
 
 

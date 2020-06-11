@@ -1,14 +1,14 @@
 const express = require('express')
 const router = express.Router()
+const { categoryList } = require('../../models/categoryList')
 const getCategory = require('../../models/getCategory')
-
 const Record = require('../../models/record')
 
 //CREATE
 router.get('/new', (req, res) => {
   const date = new Date
   const today = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).substr(-2)}-${('0' + date.getDate()).substr(-2)}`
-  res.render('new', { today })
+  res.render('new', { today, categoryList })
 })
 
 router.post('/new', (req, res) => {
@@ -19,7 +19,7 @@ router.post('/new', (req, res) => {
     date,
     amount,
     userId,
-    category: getCategory(category)
+    category: { name: getCategory(category).name, icon: getCategory(category).icon }
   })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
