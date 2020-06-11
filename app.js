@@ -6,7 +6,9 @@ const methodOverride = require('method-override')
 const usePassport = require('./config/passport')
 const routes = require('./routes')
 const flash = require('connect-flash')
-const PORT = process.env.PORT || 3000
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 require('./config/mongoose')
 
@@ -14,7 +16,7 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('method'))
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }));
@@ -34,6 +36,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
 
 
+const PORT = process.env.PORT
 
 app.listen(PORT, () => {
   console.log(`App is listening on http://localhost:${PORT}`)
