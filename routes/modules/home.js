@@ -24,17 +24,30 @@ router.get('/', (req, res) => {
 router.post('/search', (req, res) => {
   const userId = req.user._id
   console.log(req.body)
-  const { category } = req.body
-  Record.find({ 'category.name': getCategory(category).name, userId })
+  const { category, month } = req.body
+  // if category/month 不存在，設成一個一定會過的東西。
+  const category_name = !category ? { $nin: [] } : getCategory(category).name
+  const date = !month ? '-' : `-${('0' + month).substr(-2)}-`
+
+
+  Record.find({ 'category.name': category_name, 'date': { $regex: date }, userId })
     .lean()
     .then((records => {
       let totalAmount = 0
       records.forEach(record => {
         totalAmount += record.amount
       })
-      res.render('index', { records, totalAmount, categoryList, cate: getCategory(category).name })
+      res.render('index', {
+        records,
+        totalAmount,
+        categoryList,
+        category,
+        month,
+        cate: getCategory(category).name
+      })
     }))
     .catch(error => console.log(error))
 })
+
 
 module.exports = router

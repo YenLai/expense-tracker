@@ -6,35 +6,35 @@
 
   <div class="row justify-content-center">
     <h3 class="col-8 mt-4">
-      {{#if cate}}
-      <span>{{cate}}</span>
-      {{/if}}
-      總金額:
-      <div class="text-center" style="font-size: 3.5em; color:#E4885B">{{totalAmount}}</div class="text-enter">
+      <span class="px-3" style="color:#F5BE00; background-color: #343A40; border-radius:7px">{{#if month}}{{month}}月
+        {{/if}}{{cate}}
+        總金額:
+      </span>
+      <div class="text-center" style="font-size: 3.5em; color:#F5BE00">$ {{totalAmount}}</div class="text-enter">
     </h3>
   </div>
   <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-12 col-md-8">
       <ul class="list-group-flush">
         {{#each records}}
         <li class="list-group-item">
           <div class="row">
-            <a class="col-8 btn" style="background-color: #F7F7F7;" data-toggle="collapse" href="#collapse{{this._id}}"
-              role="button" aria-expanded="false" aria-controls="collapseExample">
-              <div class="row align-items-center">
-                <h2 class="col-1 mx-2" style="color: #A9DCE6;">{{{this.category.icon}}}</h2>
-                <h4 class="col my-1 ">{{this.name}}
+            <a class="col-8 btn" style="background-color: #F2EEA7; color:#343A40" data-toggle="collapse"
+              href="#collapse{{this._id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <div class="row align-items-center text-left">
+                <h2 class="col-1 mx-3" style="color: #34A997;">{{{this.category.icon}}}</h2>
+                <h4 class="col my-1  align-items-start">{{this.name}}
                   <div class="mt-2" style="font-size: medium;">
                     {{this.date}}
                   </div>
                 </h4>
-                <h4 class="col-2">{{this.amount}}</h4>
+                <h4 class="col-2 mr-4">{{this.amount}}</h4>
               </div>
             </a>
             <div class="col-4 align-self-center">
               <form action="/records/delete/{{this._id}}?method=delete" method="post" class="row mx-auto">
-                <a href="/records/edit/{{this._id}}" class="mr-1 col-4 btn btn-outline-secondary"> 修改 </a>
-                <button type="submit" class="col-4 btn btn-outline-secondary"> 刪除 </button>
+                <a href="/records/edit/{{this._id}}" class="mr-1 col-4 btn btn-outline-dark"> 修改 </a>
+                <button type="submit" class="col-4 btn btn-outline-dark"> 刪除 </button>
               </form>
             </div>
           </div>
@@ -51,7 +51,6 @@
   </div>
 
   <div class="row justify-content-center text-center my-3">
-    <a class="col-2 btn" href="/records/new"
-      style="background-color: #E4885B; border: 1px black solid; font-size:x-large">新增支出</a>
+    <a class="col-4 col-md-2 btn" href="/records/new" style="background-color: #F5BE00;  font-size:x-large">新增支出</a>
   </div>
 </div>

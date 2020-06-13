@@ -13,12 +13,13 @@
 
 <body style="font-family: 'Noto Sans TC';">
   <header>
-    <nav class="navbar navbar-dark bg-dark justify-content-between">
+    <nav class="navbar justify-content-between" style="background-color: #34A997;">
       {{#if isAuthenticated}}
-      <a class="navbar-brand" href="/">{{#if user.name}}{{user.name}}'s{{/if}} Expense Tracker</a>
+      <a class="navbar-brand" href="/" style=" color:white; font-weight:500">{{#if user.name}}{{user.name}}'s{{/if}}
+        Expense Tracker</a>
       <a href="/users/logout" class="btn btn-outline-light">Logout</a>
       {{else}}
-      <a class="navbar-brand" href="/">Expense Tracker</a>
+      <a class="navbar-brand" href="/" style=" color:white; font-weight:500">Expense Tracker </a>
       <a href="/users/login" class="btn btn-outline-light">Login</a>
       {{/if}}
     </nav>

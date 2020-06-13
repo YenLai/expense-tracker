@@ -1,10 +1,15 @@
 <form id="searchForm" action="/search" method="POST" class="row justify-content-center mt-4">
 
-  <div class="col-4">
+  <div class="col-5 col-md-4">
     <div class="input-group col-12 ">
       <select name="category" class="custom-select" style=" border-color:black"
         onchange="document.getElementById('searchForm').submit()">
-        <option value="" disabled selected>{{#if cate}}{{cate}}{{else}}ALL{{/if}}</option>
+        {{#if cate}}
+        <option value="{{category}}">{{cate}}</option>
+        {{else}}
+        <option value="" disabled selected> 支出類別</option>
+        {{/if}}
+        <option value="">ALL</option>
         {{#each categoryList}}
         <option value="{{this.id}}">{{this.name}}</option>
         {{/each}}
@@ -12,18 +17,32 @@
     </div>
   </div>
 
-
-  {{!-- <div class="col-4">
+  <div class="col-5 col-md-4">
     <div class="input-group col-12 ">
-      <select name="category" class="custom-select" style=" border-color:black">
-        <option value="" disabled selected>月份</option>
-        {{#each categoryList}}
-        <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
+      <select name="month" class="custom-select" style=" border-color:black"
+        onchange="document.getElementById('searchForm').submit()">
+        {{#if month}}
+        <option value="{{month}}">{{month}}月</option>
+        {{else}}
+        <option value="" disabled selected> 月份</option>
+        {{/if}}
+
+        <option value="1">1月</option>
+        <option value="2">2月</option>
+        <option value="3">3月</option>
+        <option value="4">4月</option>
+        <option value="5">5月</option>
+        <option value="6">6月</option>
+        <option value="7">7月</option>
+        <option value="8">8月</option>
+        <option value="9">9月</option>
+        <option value="10">10月</option>
+        <option value="11">11月</option>
+        <option value="12">12月</option>
       </select>
     </div>
-  </div> --}}
-  <a href="/" class="col-auto btn btn-outline-secondary"><i class="fas fa-redo-alt"></i></a>
+  </div>
+  <a href="/" class="col-auto btn btn-outline-dark"><i class="fas fa-redo-alt"></i></a>
 
 
 </form>
