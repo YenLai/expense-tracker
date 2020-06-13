@@ -33,15 +33,15 @@
             </a>
             <div class="col-4 align-self-center">
               <form action="/records/delete/{{this._id}}?method=delete" method="post" class="row mx-auto">
-                <a href="/records/edit/{{this._id}}" class="mr-1 col-4 btn btn-outline-dark"> 修改 </a>
-                <button type="submit" class="col-4 btn btn-outline-dark"> 刪除 </button>
+                <a href="/records/edit/{{this._id}}" class="mx-3 col-4 btn btn-outline-dark"> 修改 </a>
+                <button type="submit" class="col-4 btn btn-outline-danger"> 刪除 </button>
               </form>
             </div>
           </div>
         </li>
 
         <div class="collapse" id="collapse{{this._id}}">
-          <div class="card card-body">
+          <div class="card card-body" style="background-color:#F0F0F0;font-weight:700">
             {{this.merchant}}
           </div>
         </div>

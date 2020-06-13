@@ -32,6 +32,7 @@ router.post('/search', (req, res) => {
 
   Record.find({ 'category.name': category_name, 'date': { $regex: date }, userId })
     .lean()
+    .sort('-date')
     .then((records => {
       let totalAmount = 0
       records.forEach(record => {
