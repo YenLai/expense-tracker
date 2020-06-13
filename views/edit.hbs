@@ -5,32 +5,37 @@
 
       <div class="row mr-5">
         <div class="input-group col-12 mb-5">
-          <span style="font-size: x-large;">名稱* : </span>
-          <input name="name" type="text" class="form-control ml-3" placeholder="  支出名稱" value="{{record.name}}"
+          <span class="col-2" style="font-size: x-large;">*名稱 : </span>
+          <input name="name" type="text" class="form-control col-8 ml-3" placeholder="  支出名稱" value="{{record.name}}"
             style="width: 1em; height:3em; border-color:black" required>
         </div>
         <div class="input-group col-12 mb-5">
-          <span style="font-size: x-large;">日期* : </span>
-          <input name="date" type="date" class="form-control ml-3" value="{{record.date}}"
+          <span class="col-2" style="font-size: x-large;">*日期 : </span>
+          <input name="date" type="date" class="form-control col-8 ml-3" value="{{record.date}}"
             style="width: 1em; height:3em; border-color:black" required>
         </div>
         <div class="input-group col-12 mb-5">
-          <span style="font-size: x-large;">類別* : </span>
-          <select name="category" class="custom-select ml-3" style="width: 1em; height:3em; border-color:black"
+          <span class="col-2" style="font-size: x-large;">*類別 : </span>
+          <select name="category" class="custom-select col-8  ml-3" style="width: 1em; height:3em; border-color:black"
             required>
             <option selected>{{record.category.name}}</option>
-            <option value="0">家居物業</option>
-            <option value="1">交通出行</option>
-            <option value="2">休閒娛樂</option>
-            <option value="3">餐飲食品</option>
-            <option value="4">其他</option>
+            {{#each categoryList}}
+            <option value="{{this.id}}">{{this.name}}</option>
+            {{/each}}
           </select>
         </div>
-        <div class="input-group col-12 mb-3">
-          <span style="font-size: x-large;">金額* : </span>
-          <input name="amount" type="text" class="form-control ml-3" placeholder="  支出金額" value="{{record.amount}}"
-            style="width: 1em; height:3em; border-color:black " required>
+        <div class="input-group col-12 mb-5">
+          <span class="col-2" style="font-size: x-large;">*金額 : </span>
+          <input name="amount" type="text" class="form-control col-8 ml-3" placeholder="  支出金額"
+            value="{{record.amount}}" style="width: 1em; height:3em; border-color:black " required>
         </div>
+
+        <div class="input-group col-12 mb-3">
+          <span class="col-2" style="font-size: x-large;">商家 : </span>
+          <input name="merchant" type="text" class="form-control col-8  ml-3" placeholder="  商家名稱"
+            value="{{record.merchant}}" style="width: 1em; height:3em; border-color:black">
+        </div>
+
       </div>
       <small class="col-12 mb-3" style="color: #E4885B;">*為必填欄位</small>
 

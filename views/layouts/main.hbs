@@ -15,7 +15,7 @@
   <header>
     <nav class="navbar navbar-dark bg-dark justify-content-between">
       {{#if isAuthenticated}}
-      <a class="navbar-brand" href="/">{{user.name}}'s Expense Tracker</a>
+      <a class="navbar-brand" href="/">{{#if user.name}}{{user.name}}'s{{/if}} Expense Tracker</a>
       <a href="/users/logout" class="btn btn-outline-light">Logout</a>
       {{else}}
       <a class="navbar-brand" href="/">Expense Tracker</a>

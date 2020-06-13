@@ -3,23 +3,23 @@ const Schema = mongoose.Schema
 
 const recordSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    require: true
   },
   date: {
     type: String,
+    require: true
   },
   amount: {
-    type: Number
+    type: Number,
+    require: true
   },
   category: {
-    name:
-    {
-      type: String,
-    },
-    icon:
-    {
-      type: String,
-    }
+    name: { type: String, require: true },
+    icon: { type: String, require: true }
+  },
+  merchant: {
+    type: String
   },
   userId: {
     type: Schema.Types.ObjectId,

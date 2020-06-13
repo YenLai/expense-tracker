@@ -1,27 +1,11 @@
 <div class="container">
-  <div class="row text-center justify-content-center">
-    <div class="dropdown col-8 ">
-      <button class="btn dropdown-toggle my-3 w-50" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false" style="border: 1px black solid;">
-        {{#if cate}}
-        <span>{{cate}}</span>
-        {{else}}
-        類別
-        {{/if}}
-      </button>
 
-      <div class="dropdown-menu w-50" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/">ALL</a>
-        <a class="dropdown-item" href="/category/0">家居物業</a>
-        <a class="dropdown-item" href="/category/1">交通出行</a>
-        <a class="dropdown-item" href="/category/2">休閒娛樂</a>
-        <a class="dropdown-item" href="/category/3">餐飲食品</a>
-        <a class="dropdown-item" href="/category/4">其他</a>
-      </div>
-    </div>
+  <div>
+    {{> search}}
   </div>
+
   <div class="row justify-content-center">
-    <h3 class="col-8">
+    <h3 class="col-8 mt-4">
       {{#if cate}}
       <span>{{cate}}</span>
       {{/if}}
@@ -35,28 +19,32 @@
         {{#each records}}
         <li class="list-group-item">
           <div class="row">
-            <div class="col-8" style="background-color: #F7F7F7;">
+            <a class="col-8 btn" style="background-color: #F7F7F7;" data-toggle="collapse" href="#collapse{{this._id}}"
+              role="button" aria-expanded="false" aria-controls="collapseExample">
               <div class="row align-items-center">
                 <h2 class="col-1 mx-2" style="color: #A9DCE6;">{{{this.category.icon}}}</h2>
-                <h4 class="col my-1 mx-auto">{{this.name}}
+                <h4 class="col my-1 ">{{this.name}}
                   <div class="mt-2" style="font-size: medium;">
                     {{this.date}}
                   </div>
                 </h4>
                 <h4 class="col-2">{{this.amount}}</h4>
               </div>
-            </div>
-            <div class="col-4">
-              <div class="row mt-2">
-                <!--修改 -->
-                <form action="/records/delete/{{this._id}}?method=delete" method="post" class="col-12">
-                  <a href="/records/edit/{{this._id}}" class="col-4 ml-auto btn btn-outline-secondary"> 修改 </a>
-                  <button type="submit" class="col-4 ml-1 btn btn-outline-secondary"> 刪除 </a>
-                </form>
-              </div>
+            </a>
+            <div class="col-4 align-self-center">
+              <form action="/records/delete/{{this._id}}?method=delete" method="post" class="row mx-auto">
+                <a href="/records/edit/{{this._id}}" class="mr-1 col-4 btn btn-outline-secondary"> 修改 </a>
+                <button type="submit" class="col-4 btn btn-outline-secondary"> 刪除 </button>
+              </form>
             </div>
           </div>
         </li>
+
+        <div class="collapse" id="collapse{{this._id}}">
+          <div class="card card-body">
+            {{this.merchant}}
+          </div>
+        </div>
         {{/each}}
       </ul>
     </div>

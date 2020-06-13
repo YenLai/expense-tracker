@@ -1,0 +1,29 @@
+<form id="searchForm" action="/search" method="POST" class="row justify-content-center mt-4">
+
+  <div class="col-4">
+    <div class="input-group col-12 ">
+      <select name="category" class="custom-select" style=" border-color:black"
+        onchange="document.getElementById('searchForm').submit()">
+        <option value="" disabled selected>{{#if cate}}{{cate}}{{else}}ALL{{/if}}</option>
+        {{#each categoryList}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+
+
+  {{!-- <div class="col-4">
+    <div class="input-group col-12 ">
+      <select name="category" class="custom-select" style=" border-color:black">
+        <option value="" disabled selected>月份</option>
+        {{#each categoryList}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div> --}}
+  <a href="/" class="col-auto btn btn-outline-secondary"><i class="fas fa-redo-alt"></i></a>
+
+
+</form>
