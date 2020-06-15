@@ -1,5 +1,7 @@
 ### Expense Tracker 
 使用 Node.js 和 express 框架來完成的記帳本，資料庫使用MongoDB，提供使用者增加、刪除、修改，查詢支出紀錄。
+
+### Strat
 [開始記帳](https://immense-woodland-71920.herokuapp.com/)
 
 ### view
